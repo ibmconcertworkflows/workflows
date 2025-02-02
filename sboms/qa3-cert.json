@@ -1,0 +1,56 @@
+{
+  "components": [
+    {
+      "type": "certificate",
+      "ref": "certificate:68CB8F00D83A5C780BBBF3660E16288F30B08688",
+      "serial_number": "68CB8F00D83A5C780BBBF3660E16288F30B08688",
+      "properties": [
+        {
+          "name": "subject",
+          "value": "CN=qa3.example.com"
+        },
+        {
+          "name": "issuer",
+          "value": "C=US, ST=North Carolina, L=Raleigh, O=IBM, OU=WW CS, CN=example.com"
+        },
+        {
+          "name": "validity_start_date",
+          "value": "2025-02-02 17:48:27 +0000 UTC"
+        },
+        {
+          "name": "validity_end_date",
+          "value": "2025-02-02 17:48:27 +0000 UTC"
+        },
+        {
+          "name": "certificate_type",
+          "value": "der"
+        },
+        {
+          "name": "owner",
+          "value": "user3@example.com"
+        },
+        {
+          "name": "dns_names",
+          "value": "*.example.com"
+        },
+        {
+          "name": "metadata",
+          "value": "{\"certificate_host\": \"\", \"service_info\": \"289****\", \"dn\": \"\\\\VED\\\\Policy\\\\Aperture\\\\1CMB-CESD-IT\\\\AI\\\\Non-******************************************\", \"senior_manager_contact\": \"user3@example.com\"}"
+        }
+      ],
+      "access_points": [
+        {
+          "name": "appapi:qa3-api",
+          "is_public": "true",
+          "url": "https://qa3.example.com"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "environment:qa",
+      "depends_on": ["certificate:68CB8F00D83A5C780BBBF3660E16288F30B08688"]
+    }
+  ]
+}

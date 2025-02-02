@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:16Z",
+        "type": "application",
+        "component": {
+            "name": "dev4",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user4@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:dev",
+            "type": "environment",
+            "name": "dev"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:dev4",
+            "type": "build",
+            "name": "dev4",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/dev4:latest",
+                    "type": "container",
+                    "name": "quay.io/example/dev4:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/dev4",
+                    "type": "code",
+                    "name": "example/dev4",
+                    "purl": "https://github.com/example/dev4"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:dev4-api",
+            "name": "appapi:dev4-api",
+            "endpoints": [
+                "dev4.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:dev4",
+            "dependsOn": [
+                "appapi:appapi:dev4-api"
+            ]
+        }
+    ]
+}

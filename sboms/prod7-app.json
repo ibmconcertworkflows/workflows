@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:53Z",
+        "type": "application",
+        "component": {
+            "name": "prod7",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user7@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:prod",
+            "type": "environment",
+            "name": "prod"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:prod7",
+            "type": "build",
+            "name": "prod7",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/prod7:latest",
+                    "type": "container",
+                    "name": "quay.io/example/prod7:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/prod7",
+                    "type": "code",
+                    "name": "example/prod7",
+                    "purl": "https://github.com/example/prod7"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:prod7-api",
+            "name": "appapi:prod7-api",
+            "endpoints": [
+                "prod7.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:prod7",
+            "dependsOn": [
+                "appapi:appapi:prod7-api"
+            ]
+        }
+    ]
+}

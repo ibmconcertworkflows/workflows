@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:35Z",
+        "type": "application",
+        "component": {
+            "name": "qa6",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user6@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:qa",
+            "type": "environment",
+            "name": "qa"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:qa6",
+            "type": "build",
+            "name": "qa6",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/qa6:latest",
+                    "type": "container",
+                    "name": "quay.io/example/qa6:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/qa6",
+                    "type": "code",
+                    "name": "example/qa6",
+                    "purl": "https://github.com/example/qa6"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:qa6-api",
+            "name": "appapi:qa6-api",
+            "endpoints": [
+                "qa6.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:qa6",
+            "dependsOn": [
+                "appapi:appapi:qa6-api"
+            ]
+        }
+    ]
+}

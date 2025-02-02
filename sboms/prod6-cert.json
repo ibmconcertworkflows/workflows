@@ -1,0 +1,56 @@
+{
+  "components": [
+    {
+      "type": "certificate",
+      "ref": "certificate:41325CEC586F5728A103669D4A3BB5756CE95554",
+      "serial_number": "41325CEC586F5728A103669D4A3BB5756CE95554",
+      "properties": [
+        {
+          "name": "subject",
+          "value": "CN=prod6.example.com"
+        },
+        {
+          "name": "issuer",
+          "value": "C=US, ST=North Carolina, L=Raleigh, O=IBM, OU=WW CS, CN=example.com"
+        },
+        {
+          "name": "validity_start_date",
+          "value": "2025-02-02 17:48:49 +0000 UTC"
+        },
+        {
+          "name": "validity_end_date",
+          "value": "2025-02-02 17:48:49 +0000 UTC"
+        },
+        {
+          "name": "certificate_type",
+          "value": "der"
+        },
+        {
+          "name": "owner",
+          "value": "user6@example.com"
+        },
+        {
+          "name": "dns_names",
+          "value": "*.example.com"
+        },
+        {
+          "name": "metadata",
+          "value": "{\"certificate_host\": \"\", \"service_info\": \"289****\", \"dn\": \"\\\\VED\\\\Policy\\\\Aperture\\\\1CMB-CESD-IT\\\\AI\\\\Non-******************************************\", \"senior_manager_contact\": \"user6@example.com\"}"
+        }
+      ],
+      "access_points": [
+        {
+          "name": "appapi:prod6-api",
+          "is_public": "true",
+          "url": "https://prod6.example.com"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "environment:prod",
+      "depends_on": ["certificate:41325CEC586F5728A103669D4A3BB5756CE95554"]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:33Z",
+        "type": "application",
+        "component": {
+            "name": "qa5",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user5@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:qa",
+            "type": "environment",
+            "name": "qa"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:qa5",
+            "type": "build",
+            "name": "qa5",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/qa5:latest",
+                    "type": "container",
+                    "name": "quay.io/example/qa5:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/qa5",
+                    "type": "code",
+                    "name": "example/qa5",
+                    "purl": "https://github.com/example/qa5"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:qa5-api",
+            "name": "appapi:qa5-api",
+            "endpoints": [
+                "qa5.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:qa5",
+            "dependsOn": [
+                "appapi:appapi:qa5-api"
+            ]
+        }
+    ]
+}

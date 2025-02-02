@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:39Z",
+        "type": "application",
+        "component": {
+            "name": "prod1",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user1@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:prod",
+            "type": "environment",
+            "name": "prod"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:prod1",
+            "type": "build",
+            "name": "prod1",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/prod1:latest",
+                    "type": "container",
+                    "name": "quay.io/example/prod1:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/prod1",
+                    "type": "code",
+                    "name": "example/prod1",
+                    "purl": "https://github.com/example/prod1"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:prod1-api",
+            "name": "appapi:prod1-api",
+            "endpoints": [
+                "prod1.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:prod1",
+            "dependsOn": [
+                "appapi:appapi:prod1-api"
+            ]
+        }
+    ]
+}

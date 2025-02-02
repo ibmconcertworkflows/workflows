@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:46Z",
+        "type": "application",
+        "component": {
+            "name": "prod4",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user4@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:prod",
+            "type": "environment",
+            "name": "prod"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:prod4",
+            "type": "build",
+            "name": "prod4",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/prod4:latest",
+                    "type": "container",
+                    "name": "quay.io/example/prod4:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/prod4",
+                    "type": "code",
+                    "name": "example/prod4",
+                    "purl": "https://github.com/example/prod4"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:prod4-api",
+            "name": "appapi:prod4-api",
+            "endpoints": [
+                "prod4.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:prod4",
+            "dependsOn": [
+                "appapi:appapi:prod4-api"
+            ]
+        }
+    ]
+}

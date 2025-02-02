@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:12Z",
+        "type": "application",
+        "component": {
+            "name": "dev2",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user2@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:dev",
+            "type": "environment",
+            "name": "dev"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:dev2",
+            "type": "build",
+            "name": "dev2",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/dev2:latest",
+                    "type": "container",
+                    "name": "quay.io/example/dev2:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/dev2",
+                    "type": "code",
+                    "name": "example/dev2",
+                    "purl": "https://github.com/example/dev2"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:dev2-api",
+            "name": "appapi:dev2-api",
+            "endpoints": [
+                "dev2.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:dev2",
+            "dependsOn": [
+                "appapi:appapi:dev2-api"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:37Z",
+        "type": "application",
+        "component": {
+            "name": "qa7",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user7@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:qa",
+            "type": "environment",
+            "name": "qa"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:qa7",
+            "type": "build",
+            "name": "qa7",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/qa7:latest",
+                    "type": "container",
+                    "name": "quay.io/example/qa7:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/qa7",
+                    "type": "code",
+                    "name": "example/qa7",
+                    "purl": "https://github.com/example/qa7"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:qa7-api",
+            "name": "appapi:qa7-api",
+            "endpoints": [
+                "qa7.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:qa7",
+            "dependsOn": [
+                "appapi:appapi:qa7-api"
+            ]
+        }
+    ]
+}

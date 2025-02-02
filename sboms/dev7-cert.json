@@ -1,0 +1,56 @@
+{
+  "components": [
+    {
+      "type": "certificate",
+      "ref": "certificate:1D4ABD92D1AE912790DE30CC72460EA82E924DD6",
+      "serial_number": "1D4ABD92D1AE912790DE30CC72460EA82E924DD6",
+      "properties": [
+        {
+          "name": "subject",
+          "value": "CN=dev7.example.com"
+        },
+        {
+          "name": "issuer",
+          "value": "C=US, ST=North Carolina, L=Raleigh, O=IBM, OU=WW CS, CN=example.com"
+        },
+        {
+          "name": "validity_start_date",
+          "value": "2025-02-02 17:48:21 +0000 UTC"
+        },
+        {
+          "name": "validity_end_date",
+          "value": "2025-02-02 17:48:21 +0000 UTC"
+        },
+        {
+          "name": "certificate_type",
+          "value": "der"
+        },
+        {
+          "name": "owner",
+          "value": "user7@example.com"
+        },
+        {
+          "name": "dns_names",
+          "value": "*.example.com"
+        },
+        {
+          "name": "metadata",
+          "value": "{\"certificate_host\": \"\", \"service_info\": \"289****\", \"dn\": \"\\\\VED\\\\Policy\\\\Aperture\\\\1CMB-CESD-IT\\\\AI\\\\Non-******************************************\", \"senior_manager_contact\": \"user7@example.com\"}"
+        }
+      ],
+      "access_points": [
+        {
+          "name": "appapi:dev7-api",
+          "is_public": "true",
+          "url": "https://dev7.example.com"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "environment:dev",
+      "depends_on": ["certificate:1D4ABD92D1AE912790DE30CC72460EA82E924DD6"]
+    }
+  ]
+}

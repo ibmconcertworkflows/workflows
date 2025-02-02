@@ -1,0 +1,79 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0.2",
+    "metadata": {
+        "timestamp": "2025-02-02T17:48:48Z",
+        "type": "application",
+        "component": {
+            "name": "prod5",
+            "version": "1.0.0"
+        },
+        "business": {
+            "name": "Example, Inc",
+            "units": [
+                {
+                    "name": "ACME",
+                    "email": "user5@example.com",
+                    "phone": "555-555-5555"
+                }
+            ]
+        }
+    },
+    "environments": [
+        {
+            "bom-ref": "environment:prod",
+            "type": "environment",
+            "name": "prod"
+        }
+    ],
+    "components": [
+        {
+            "bom-ref": "build:prod5",
+            "type": "build",
+            "name": "prod5",
+            "version": "1.0.0",
+            "components": [
+                {
+                    "bom-ref": "container:quay.io/example/prod5:latest",
+                    "type": "container",
+                    "name": "quay.io/example/prod5:latest"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:example/prod5",
+                    "type": "code",
+                    "name": "example/prod5",
+                    "purl": "https://github.com/example/prod5"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:appapi:prod5-api",
+            "name": "appapi:prod5-api",
+            "endpoints": [
+                "prod5.example.com"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "bom-ref": "build:prod5",
+            "dependsOn": [
+                "appapi:appapi:prod5-api"
+            ]
+        }
+    ]
+}
